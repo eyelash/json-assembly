@@ -1,0 +1,33 @@
+[
+    ["mov", "isPrime", [[
+        ["mov", "n", ["args", 0]],
+        ["mov", "ret", [true]],
+        ["mov", "i", [2]],
+        ["mul", "iSquared", "i", "i"],
+        ["lte", "cond", "iSquared", "n"],
+        ["and", "cond", "cond", "ret"],
+        ["while", "cond", [
+            ["rem", "remainder", "n", "i"],
+            ["eq", "hasFactor", "remainder", [0]],
+            ["if", "hasFactor", [
+                ["mov", "ret", [false]]
+            ]],
+            ["add", "i", "i", [1]],
+            ["mul", "iSquared", "i", "i"],
+            ["lte", "cond", "iSquared", "n"],
+            ["and", "cond", "cond", "ret"]
+        ]]
+    ]]],
+    ["mov", "n", [2]],
+    ["mov", "count", [0]],
+    ["lt", "cond", "count", [100]],
+    ["while", "cond", [
+        ["call", "p", "isPrime", ["n"]],
+        ["if", "p", [
+            ["log", "n", ["is prime"]],
+            ["add", "count", "count", [1]]
+        ]],
+        ["add", "n", "n", [1]],
+        ["lt", "cond", "count", [100]]
+    ]]
+]
